@@ -4,16 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MemoApp</title>
+    <title>アンサーサイト</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>MemoApp <small>Version <%= version %></small></h1>
+        <h1>Ansers</h1>
+        <table style="margin-top: 50px;"></table>
+        
+        <div class="form-group">
+        <input type="text" class="form-control" id="title" name="title"  placeholder="ワトソンに質問をしてみましょう" style="float:left;width: 90%">
         <a href="#" data-remote="/memos" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
-            data-keyboard="false">新規作成</a>
-        <div class="table-responsive">
+            data-keyboard="false" style="float:right">質問する</a>
+        </div>
+        <!-- <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -36,15 +41,15 @@
                             <td class="text-center">
                                 <form method="POST" action="/memos/<%= row.id %>?_method=DELETE">
                                     <button type="submit" class="btn btn-link btn-xs">
- <span aria-hidden="true" class="glyphicon glyphicon-remove"></span><span class="sr-only">削除</span>
- </button>
+                                        <span aria-hidden="true" class="glyphicon glyphicon-remove"></span><span class="sr-only">削除</span>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                         <% }); %>
                 </tbody>
             </table>
-        </div>
+        </div> -->
         <div class="modal" id="dialog" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content"></div>

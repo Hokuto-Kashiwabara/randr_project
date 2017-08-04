@@ -27,37 +27,37 @@ process.nextTick(function() {
  });
 };
 
-// (2)メモの取得
-exports.get = function(id, callback) {
- var doc = {
- title : docs[id].title,
- content : docs[id].content,
- updatedAt : docs[id].updatedAt
- };
+// // (2)メモの取得
+// exports.get = function(id, callback) {
+//  var doc = {
+//  title : docs[id].title,
+//  content : docs[id].content,
+//  updatedAt : docs[id].updatedAt
+//  };
 
-process.nextTick(function() {
- callback(null, doc);
- });
-};
+// process.nextTick(function() {
+//  callback(null, doc);
+//  });
+// };
 
-// (3)メモの保存
-exports.save = function(id, doc, callback) {
- docs[id] = {
- title : doc.title,
- content : doc.content,
- updatedAt : doc.updatedAt
- };
+// // (3)メモの保存
+// exports.save = function(id, doc, callback) {
+//  docs[id] = {
+//  title : doc.title,
+//  content : doc.content,
+//  updatedAt : doc.updatedAt
+//  };
 
-process.nextTick(function() {
- callback();
- });
-};
+// process.nextTick(function() {
+//  callback();
+//  });
+// };
 
-// (4)メモの削除
-exports.remove = function(id, callback) {
- delete docs[id];
+// // (4)メモの削除
+// exports.remove = function(id, callback) {
+//  delete docs[id];
 
-process.nextTick(function() {
- callback();
- });
-};
+// process.nextTick(function() {
+//  callback();
+//  });
+// };
