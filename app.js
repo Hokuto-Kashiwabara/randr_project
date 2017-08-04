@@ -1,6 +1,6 @@
 // MemoApp - app.js
 
-// (a)g—pƒ‚ƒWƒ…[ƒ‹‚Ì“Ç‚İ‚İ
+// (a)ä½¿ç”¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®èª­ã¿è¾¼ã¿
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -8,22 +8,22 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var routes = require('./routes');
 
-// (b)ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Ìì¬
+// (b)ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ä½œæˆ
 var app = express();
 
-// (c)ƒrƒ…[‚Ìİ’è
+// (c)ãƒ“ãƒ¥ãƒ¼ã®è¨­å®š
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// (d)ƒ~ƒhƒ‹ƒEƒFƒA‚Ìİ’è
+// (d)ãƒŸãƒ‰ãƒ«ã‚¦ã‚§ã‚¢ã®è¨­å®š
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(methodOverride('_method'));
 
-// (e)ƒ‹[ƒeƒBƒ“ƒO‚Ìİ’è
+// (e)ãƒ«ãƒ¼ãƒ†ã‚£ãƒ³ã‚°ã®è¨­å®š
 app.use('/', routes);
 
-// (f)ƒŠƒNƒGƒXƒg‚Ìó‚¯•t‚¯
+// (f)ãƒªã‚¯ã‚¨ã‚¹ãƒˆã®å—ã‘ä»˜ã‘
 var server = app.listen(process.env.PORT || 3000, function() {
- console.log('Listening on port %d', server.address().port);
+ console.log('Listening on port http://localhost:' + '%d', server.address().port);
 });

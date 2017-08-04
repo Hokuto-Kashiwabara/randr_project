@@ -1,28 +1,28 @@
 // MemoApp - routes\index.js
 
-// (a)g—pƒ‚ƒWƒ…[ƒ‹‚Ì“Ç‚İ‚İ
+// (a)ä½¿ç”¨ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®èª­ã¿è¾¼ã¿
 var express = require('express');
 var uuid = require('node-uuid');
 var moment = require('moment');
 var memo = require('../models/memo');
 var package = require('../package.json');
 
-// (b)ƒ‹[ƒ^[‚Ìì¬
+// (b)ãƒ«ãƒ¼ã‚¿ãƒ¼ã®ä½œæˆ
 var router = express.Router();
 
-// (1)ƒƒ‚ˆê——‚Ì•\¦(ƒy[ƒW•\¦)
+// (1)ãƒ¡ã‚¤ãƒ³ç”»é¢ã®è¡¨ç¤º(ãƒšãƒ¼ã‚¸è¡¨ç¤º)
 router.get('/', function(req, res) {
  memo.list(function(err, list) {
  res.render('index', { version : package.version, list : list });
  });
 });
 
-// (2)V‹Kƒƒ‚‚Ìì¬(ƒ_ƒCƒAƒƒO•\¦)
+// (2)æ–°è¦ãƒ¡ãƒ¢ã®ä½œæˆ(ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º)
 router.get('/memos', function(req, res) {
  res.render('dialog', { id : null, doc : null });
 });
 
-// (3)Šù‘¶ƒƒ‚‚Ì•ÒW(ƒ_ƒCƒAƒƒO•\¦)
+// (3)æ—¢å­˜ãƒ¡ãƒ¢ã®ç·¨é›†(ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤º)
 router.get('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
  var id = req.param('id');
 
@@ -31,7 +31,7 @@ memo.get(id, function(err, doc) {
  });
 });
 
-// (4)V‹Kƒƒ‚‚Ì•Û‘¶
+// (4)æ–°è¦ãƒ¡ãƒ¢ã®ä¿å­˜
 router.post('/memos', function(req, res) {
  var id = uuid.v4();
  var doc = {
@@ -45,7 +45,7 @@ memo.save(id, doc, function(err) {
  });
 });
 
-// (5)Šù‘¶ƒƒ‚‚Ì•Û‘¶
+// (5)æ—¢å­˜ãƒ¡ãƒ¢ã®ä¿å­˜
 router.put('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
  var id = req.param('id');
  var doc = {
@@ -59,7 +59,7 @@ memo.save(id, doc, function(err) {
  });
 });
 
-// (6)Šù‘¶ƒƒ‚‚Ìíœ
+// (6)æ—¢å­˜ãƒ¡ãƒ¢ã®å‰Šé™¤
 router.delete('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
  var id = req.param('id');
 

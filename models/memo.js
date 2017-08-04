@@ -1,9 +1,9 @@
-// MemoApp ? models\memo.js (ƒƒ‚ƒŠ[”Å)
+// MemoApp ? models\memo.js (ãƒ¡ãƒ¢ãƒªãƒ¼ç‰ˆ)
 
-// (a)ƒƒ‚Eƒf[ƒ^‚ğ•Û‚·‚éƒIƒuƒWƒFƒNƒg
+// (a)ãƒ¡ãƒ¢ãƒ»ãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 var docs = {};
 
-// (1)ƒƒ‚ˆê——‚Ìæ“¾
+// (1)ãƒ¡ãƒ¢ä¸€è¦§ã®å–å¾—
 exports.list = function(callback) {
  var list = Object.keys(docs).map(function(id) {
  var row = {
@@ -27,7 +27,7 @@ process.nextTick(function() {
  });
 };
 
-// (2)ƒƒ‚‚Ìæ“¾
+// (2)ãƒ¡ãƒ¢ã®å–å¾—
 exports.get = function(id, callback) {
  var doc = {
  title : docs[id].title,
@@ -40,7 +40,7 @@ process.nextTick(function() {
  });
 };
 
-// (3)ƒƒ‚‚Ì•Û‘¶
+// (3)ãƒ¡ãƒ¢ã®ä¿å­˜
 exports.save = function(id, doc, callback) {
  docs[id] = {
  title : doc.title,
@@ -53,7 +53,7 @@ process.nextTick(function() {
  });
 };
 
-// (4)ƒƒ‚‚Ìíœ
+// (4)ãƒ¡ãƒ¢ã®å‰Šé™¤
 exports.remove = function(id, callback) {
  delete docs[id];
 
