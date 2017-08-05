@@ -1,25 +1,71 @@
-// MemoApp - routes\index.js
+// answers - routes\index.js
 
-// (a)使用モジュールの読み込み
+// 使用モジュールの読み込み
 var express = require('express');
 var uuid = require('node-uuid');
 var moment = require('moment');
 var memo = require('../models/memo');
 var package = require('../package.json');
+var watson = require('watson-developer-cloud');
+var qs = require('qs');
 
-// (b)ルーターの作成
+// ルーターの作成
 var router = express.Router();
 
-// (1)メイン画面の表示(ページ表示)
-router.get('/', function(req, res) {
- memo.list(function(err, list) {
- res.render('index', { version : package.version, list : list });
- });
+//watson R&Rクラスター接続確認
+var retrieve_and_rank = watson.retrieve_and_rank({
+  username: '8e15a2cb-4a85-4ee4-8894-c1ee4436c686',
+  password: 'T3Btu4vegwaA',
+  version: 'v1'
 });
 
-// (2)新規メモの作成(ダイアログ表示)
-router.get('/memos', function(req, res) {
- res.render('dialog', { id : null, doc : null });
+retrieve_and_rank.listClusters({},
+  function (err, response) {
+    if (err)
+      console.log('error:', err);
+    else
+      console.log(JSON.stringify(response, null, 2));
+});
+
+retrieve_and_rank.listRankers({},
+  function(err, response) {
+    if (err)
+      console.log('error: ', err);
+    else
+      console.log(JSON.stringify(response, null, 2));
+});
+
+// メイン画面の表示(ページ表示)
+router.get('/', function(req, res) {
+ res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnsersSite'});
+});
+
+
+// 検索ボタン
+router.get('/answer', function(req, res) {
+
+var params = {
+  cluster_id: 'scfca104ca_290c_4b61_8d07_f0082d7a9c22',
+  collection_name: 'DataSP'
+};
+
+// Get a Solr client for indexing and searching documents.
+// See https://github.com/watson-developer-cloud/node-sdk/blob/master/services/retrieve_and_rank/v1.js
+solrClient = retrieve_and_rank.createSolrClient(params);
+
+var ranker_id = '7ff711x34-rank-525';
+var question  = '仕様書はどうやって出力するの？';
+question = encodeURIComponent(question);
+var query     = qs.stringify({q: question, ranker_id: ranker_id, fl: 'id,title'}); //bodyで中身表示
+
+solrClient.get('fcselect', query, function(err, searchResponse) {
+  if(err) {
+    console.log('Error searching for documents: ' + err);
+  }
+    else {
+      console.log(JSON.stringify(searchResponse.response.docs, null, 2));
+    }
+});
 });
 
 // // (3)既存メモの編集(ダイアログ表示)

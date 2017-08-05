@@ -14,8 +14,8 @@
         <table style="margin-top: 50px;"></table>
         
         <div class="form-group">
-        <input type="text" class="form-control" id="title" name="title"  placeholder="ワトソンに質問をしてみましょう" style="float:left;width: 90%">
-        <a href="#" data-remote="/memos" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
+        <input type="text" class="form-control" id="title" name="title" value="" placeholder="ワトソンに質問をしてみましょう" style="float:left;width: 90%">
+        <a href="#" data-remote="/answer" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
             data-keyboard="false" style="float:right">質問する</a>
         </div>
         <!-- <div class="table-responsive">
@@ -28,25 +28,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% list.forEach(function(row) { %>
-                        <tr>
-                            <td>
-                                <a href="#" data-remote="/memos/<%= row.id %>" data-toggle="modal" data-target="#dialog" data-backdrop="static" data-keyboard="false">
-                                    <%= row.title %>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <%= row.updatedAt %>
-                            </td>
-                            <td class="text-center">
-                                <form method="POST" action="/memos/<%= row.id %>?_method=DELETE">
-                                    <button type="submit" class="btn btn-link btn-xs">
-                                        <span aria-hidden="true" class="glyphicon glyphicon-remove"></span><span class="sr-only">削除</span>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        <% }); %>
                 </tbody>
             </table>
         </div> -->
