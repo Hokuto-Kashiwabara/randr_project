@@ -10,6 +10,7 @@ var routes = require('./routes');
 
 // アプリケーションの作成
 var app = express();
+app.use(express.static(__dirname + '/public'));
 
 // ビューの設定
 app.set('views', path.join(__dirname, 'views'));

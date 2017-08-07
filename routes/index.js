@@ -37,12 +37,12 @@ retrieve_and_rank.listRankers({},
 
 // メイン画面の表示(ページ表示)
 router.get('/', function(req, res) {
- res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnsersSite'});
+ res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
 });
 
 
 // 検索ボタン
-router.get('/answer', function(req, res) {
+router.get('/answer/:q', function(req, res) {
 
 var params = {
   cluster_id: 'scfca104ca_290c_4b61_8d07_f0082d7a9c22',
@@ -54,9 +54,9 @@ var params = {
 solrClient = retrieve_and_rank.createSolrClient(params);
 
 var ranker_id = '7ff711x34-rank-525';
-var question  = '仕様書はどうやって出力するの？';
+var question  = req.params.q;
 question = encodeURIComponent(question);
-var query     = qs.stringify({q: question, ranker_id: ranker_id, fl: 'id,title'}); //bodyで中身表示
+var query     = qs.stringify({q: question, ranker_id: ranker_id, fl: 'id,title,body'}); //bodyで中身表示
 
 solrClient.get('fcselect', query, function(err, searchResponse) {
   if(err) {
@@ -64,6 +64,9 @@ solrClient.get('fcselect', query, function(err, searchResponse) {
   }
     else {
       console.log(JSON.stringify(searchResponse.response.docs, null, 2));
+      var response = { answer: searchResponse.response.docs[0].body,
+            message: '回答が見つかりました。' };
+        return res.status(200).send(JSON.stringify(response));
     }
 });
 });

@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>アンサーサイト</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="/js/index.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>Ansers</h1>
+        <h1>Answers</h1>
         <table style="margin-top: 50px;"></table>
         
         <div class="form-group">
-        <input type="text" class="form-control" id="title" name="title" value="" placeholder="ワトソンに質問をしてみましょう" style="float:left;width: 90%">
+        <input type="text" class="form-control" id="q" name="q" value="" placeholder="ワトソンに質問をしてみましょう" style="float:left;width: 90%">
         <a href="#" data-remote="/answer" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
             data-keyboard="false" style="float:right">質問する</a>
         </div>
+        <div>
+            <input type="button" id="askButton" value="質問する" onClick="askQuestion()">
+        </div>
+
+        <textarea id="answerArea" cols="80" rows="3" disabled>Watsonの回答</textarea>
         <!-- <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead>
@@ -39,13 +45,13 @@
     </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+     <!-- <script type="text/javascript">
         $(document).ready(function () {
             $(document).on("hidden.bs.modal", function (event) {
                 $(event.target).removeData("bs.modal").find(".modal-content").empty();
             });
         });
-    </script>
+    </script>  -->
 </body>
 
 </html>
