@@ -12,40 +12,39 @@ var qs = require('qs');
 // ルーターの作成
 var router = express.Router();
 
-//watson R&Rクラスター接続確認
-var retrieve_and_rank = watson.retrieve_and_rank({
-  username: '8e15a2cb-4a85-4ee4-8894-c1ee4436c686',
-  password: 'T3Btu4vegwaA',
-  version: 'v1'
-});
-
-//// LIST クラスター　ランカー
-// retrieve_and_rank.listClusters({},
-//   function (err, response) {
-//     if (err)
-//       console.log('error:', err);
-//     else
-//       console.log(JSON.stringify(response, null, 2));
-// });
-
-// retrieve_and_rank.listRankers({},
-//   function(err, response) {
-//     if (err)
-//       console.log('error: ', err);
-//     else
-//       console.log(JSON.stringify(response, null, 2));
-// });
-
 // メイン画面の表示(ページ表示)
 router.get('/', function(req, res) {
  res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
 });
 
 // クラスター確認
-router.get('/gt', function(req, res) {
+router.post('/gt', function(req, res) {
 
-var params = {req
-};
+var params = {
+  username: req.body.u,
+  password: req.body.p,
+  version: 'v1'
+}
+
+var retrieve_and_rank = watson.retrieve_and_rank(params);
+
+retrieve_and_rank.listClusters({},
+  function (err, response) {
+    if (err)
+      console.log('error:', err);
+    else
+      return res.status(200).send(JSON.stringify(response));
+      console.log(JSON.stringify(response, null, 2));
+});
+
+retrieve_and_rank.listRankers({},
+  function(err, response) {
+    if (err)
+      console.log('error: ', err);
+    else
+      console.log(JSON.stringify(response, null, 2));
+});
+
 });
 
 // 検索ボタン
@@ -78,50 +77,31 @@ solrClient.get('fcselect', query, function(err, searchResponse) {
 });
 });
 
-// // (3)既存メモの編集(ダイアログ表示)
-// router.get('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
-//  var id = req.param('id');
-
-// memo.get(id, function(err, doc) {
-//  res.render('dialog', { id : id, doc : doc });
-//  });
-// });
-
-// // (4)新規メモの保存
-// router.post('/memos', function(req, res) {
-//  var id = uuid.v4();
-//  var doc = {
-//  title : req.body.title,
-//  content : req.body.content,
-//  updatedAt : moment().zone('+0900').format('YYYY/MM/DD HH:mm:ss')
-//  };
-
-// memo.save(id, doc, function(err) {
-//  res.redirect('/');
-//  });
-// });
-
-// // (5)既存メモの保存
-// router.put('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
-//  var id = req.param('id');
-//  var doc = {
-//  title : req.body.title,
-//  content : req.body.content,
-//  updatedAt : moment().zone('+0900').format('YYYY/MM/DD HH:mm:ss')
-//  };
-
-// memo.save(id, doc, function(err) {
-//  res.redirect('/');
-//  });
-// });
-
-// // (6)既存メモの削除
-// router.delete('/memos/:id([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})', function(req, res) {
-//  var id = req.param('id');
-
-// memo.remove(id, function(err) {
-//  res.redirect('/');
-//  });
-// });
-
 module.exports = router;
+
+
+
+
+// //watson R&Rクラスター接続確認
+// var retrieve_and_rank = watson.retrieve_and_rank({
+//   username: '8e15a2cb-4a85-4ee4-8894-c1ee4436c686',
+//   password: 'T3Btu4vegwaA',
+//   version: 'v1'
+// });
+
+//// LIST クラスター　ランカー
+// retrieve_and_rank.listClusters({},
+//   function (err, response) {
+//     if (err)
+//       console.log('error:', err);
+//     else
+//       console.log(JSON.stringify(response, null, 2));
+// });
+
+// retrieve_and_rank.listRankers({},
+//   function(err, response) {
+//     if (err)
+//       console.log('error: ', err);
+//     else
+//       console.log(JSON.stringify(response, null, 2));
+// });

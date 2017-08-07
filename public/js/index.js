@@ -9,58 +9,30 @@ $(function() {
 	 * クラスター確認ボタンクリック
 	 */
 	$('#clsButton').click(function() {
-		cluscheck($('#username','#password').val());
+var username = encodeURIComponent($('#input_username')[0].value).trim();
+var password = encodeURIComponent($('#input_password')[0].value).trim();
+var params = {
+  u:username,
+  p:password
+}
+		cluscheck(params);
   });
-
 });
-
 
 /**
  * 渡された文字列でクラスターを確認する。
- * @param {object}  q - Watsonへの質問
- * @param {String}  corpus - アクセスしたいコーパス名
+ * @param {object}  params - auth
  */
-var cluscheck = function(a,b,err) {
-	var params = { req
-	};
+var cluscheck = function(params) {
+
 	$.post('/gt', params).done(function(html) {
-		$('#' + corpus + '-panel').html(html);
-		app.addTooltip(); 
+    $('panel-heading').html(html);
+    console.log(html);
 
 	}).fail(function(error) {
 		console.log(error);
 	});
 }
-
-// // -------------------------------------------------------------------
-// // NLCによるクラス分け
-// // -------------------------------------------------------------------
-// var invokeNLC = function(q) {        
-//   var xhr = new XMLHttpRequest();
-//   xhr.onreadystatechange = function (){
-//     switch(xhr.readyState){
-//       case 4:
-//         if(xhr.status == 0){
-//           console.log("XHR 通信失敗");
-//         }else{
-//           if(xhr.status == 200){
-//             console.log("受信:" + xhr.responseText);
-//             invokeRR(JSON.parse(xhr.responseText).cl, q);
-//           }else{
-//             console.log("その他の応答:" + xhr.status);
-//             console.log("その他の応答:" + xhr.responseText);
-//             var answerArea = document.getElementById("answerArea");
-//             answerArea.innerHTML = JSON.parse(xhr.responseText).message;
-//             invokeT2S(JSON.parse(xhr.responseText).message);
-//           }
-//         }
-//       break;
-//     }
-//   };
-//   var url = "./natural_language_classifier?q=" + q;
-//   xhr.open("GET", url, true);
-//   xhr.send("");
-// }
 
 // -------------------------------------------------------------------
 // RRによる応答
@@ -94,28 +66,6 @@ var invokeRR = function(question, q) {
   xhr.open("GET", url, true);
   xhr.send("");
 }
-
-// // -------------------------------------------------------------------
-// // T2Sによりしゃべる
-// // -------------------------------------------------------------------
-// var invokeT2S = function(text){
-//   var audio = document.createElement("audio");
-//   console.log("text = " + text);
-//   audio.src = "./text_to_speech?text=" + text;
-//   audio.play();      
-// }
-
-// // -------------------------------------------------------------------
-// // 質問の長さを確認してボタンを有効／無効化
-// // -------------------------------------------------------------------
-// var checkLength = function($this) {
-//   var askButton = document.getElementById("askButton");
-//   if ($this.value.length > 0) {
-//     askButton.disabled = false;
-//   } else {
-//     askButton.disabled = true;
-//   }
-// }
 
 // -------------------------------------------------------------------
 // NLCに入れる前準備
@@ -151,3 +101,60 @@ function XMLHttpRequestCreate(){
   // not supported
   return null;
 };
+
+
+
+
+
+// // -------------------------------------------------------------------
+// // NLCによるクラス分け
+// // -------------------------------------------------------------------
+// var invokeNLC = function(q) {        
+//   var xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function (){
+//     switch(xhr.readyState){
+//       case 4:
+//         if(xhr.status == 0){
+//           console.log("XHR 通信失敗");
+//         }else{
+//           if(xhr.status == 200){
+//             console.log("受信:" + xhr.responseText);
+//             invokeRR(JSON.parse(xhr.responseText).cl, q);
+//           }else{
+//             console.log("その他の応答:" + xhr.status);
+//             console.log("その他の応答:" + xhr.responseText);
+//             var answerArea = document.getElementById("answerArea");
+//             answerArea.innerHTML = JSON.parse(xhr.responseText).message;
+//             invokeT2S(JSON.parse(xhr.responseText).message);
+//           }
+//         }
+//       break;
+//     }
+//   };
+//   var url = "./natural_language_classifier?q=" + q;
+//   xhr.open("GET", url, true);
+//   xhr.send("");
+// }
+
+
+// // -------------------------------------------------------------------
+// // T2Sによりしゃべる
+// // -------------------------------------------------------------------
+// var invokeT2S = function(text){
+//   var audio = document.createElement("audio");
+//   console.log("text = " + text);
+//   audio.src = "./text_to_speech?text=" + text;
+//   audio.play();      
+// }
+
+// // -------------------------------------------------------------------
+// // 質問の長さを確認してボタンを有効／無効化
+// // -------------------------------------------------------------------
+// var checkLength = function($this) {
+//   var askButton = document.getElementById("askButton");
+//   if ($this.value.length > 0) {
+//     askButton.disabled = false;
+//   } else {
+//     askButton.disabled = true;
+//   }
+// }
