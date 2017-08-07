@@ -1,3 +1,37 @@
+'use strict';
+
+/**
+ * ready
+ */
+$(function() {
+
+	/**
+	 * クラスター確認ボタンクリック
+	 */
+	$('#clsButton').click(function() {
+		cluscheck($('#username','#password').val());
+  });
+
+});
+
+
+/**
+ * 渡された文字列でクラスターを確認する。
+ * @param {object}  q - Watsonへの質問
+ * @param {String}  corpus - アクセスしたいコーパス名
+ */
+var cluscheck = function(a,b,err) {
+	var params = { req
+	};
+	$.post('/gt', params).done(function(html) {
+		$('#' + corpus + '-panel').html(html);
+		app.addTooltip(); 
+
+	}).fail(function(error) {
+		console.log(error);
+	});
+}
+
 // // -------------------------------------------------------------------
 // // NLCによるクラス分け
 // // -------------------------------------------------------------------

@@ -19,27 +19,34 @@ var retrieve_and_rank = watson.retrieve_and_rank({
   version: 'v1'
 });
 
-retrieve_and_rank.listClusters({},
-  function (err, response) {
-    if (err)
-      console.log('error:', err);
-    else
-      console.log(JSON.stringify(response, null, 2));
-});
+//// LIST クラスター　ランカー
+// retrieve_and_rank.listClusters({},
+//   function (err, response) {
+//     if (err)
+//       console.log('error:', err);
+//     else
+//       console.log(JSON.stringify(response, null, 2));
+// });
 
-retrieve_and_rank.listRankers({},
-  function(err, response) {
-    if (err)
-      console.log('error: ', err);
-    else
-      console.log(JSON.stringify(response, null, 2));
-});
+// retrieve_and_rank.listRankers({},
+//   function(err, response) {
+//     if (err)
+//       console.log('error: ', err);
+//     else
+//       console.log(JSON.stringify(response, null, 2));
+// });
 
 // メイン画面の表示(ページ表示)
 router.get('/', function(req, res) {
  res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
 });
 
+// クラスター確認
+router.get('/gt', function(req, res) {
+
+var params = {req
+};
+});
 
 // 検索ボタン
 router.get('/answer/:q', function(req, res) {
