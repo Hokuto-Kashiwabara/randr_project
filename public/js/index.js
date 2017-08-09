@@ -25,13 +25,27 @@ var params = {
  */
 var cluscheck = function(params) {
 
-	$.post('/gt', params).done(function(html) {
+	$.post('/list', params).done(function(html) {
     $('panel-heading').html(html);
     console.log(html);
 
 	}).fail(function(error) {
 		console.log(error);
 	});
+}
+
+
+// 質問ボタンクリック
+// -------------------------------------------------------------------
+var askQuestion = function() {
+  // 回答欄のクリア
+  // var answerArea = document.getElementById("answerArea");
+  // answerArea.innerHTML = "Watsonの回答";
+
+  // 質問文のセット
+  var q = document.getElementById("q").value;
+  console.log("q = " + q );
+  invokeRR(q);
 }
 
 // -------------------------------------------------------------------
@@ -48,8 +62,10 @@ var invokeRR = function(question, q) {
         }else{
           if(xhr.status == 200){
             console.log("受信:" + xhr.responseText);
-            var answerArea = document.getElementById("answerArea");
-            answerArea.innerHTML = JSON.parse(xhr.responseText).answer;
+            // var answerArea = document.getElementById("answerArea");
+            var table = document.getElementById("tableid");
+            var cell = table.rows[1];
+            cell.innerHTML = JSON.parse(xhr.responseText);
             // invokeT2S(JSON.parse(xhr.responseText).answer);
           }else{
             console.log("その他の応答:" + xhr.status);
@@ -67,19 +83,7 @@ var invokeRR = function(question, q) {
   xhr.send("");
 }
 
-// -------------------------------------------------------------------
-// NLCに入れる前準備
-// -------------------------------------------------------------------
-var askQuestion = function() {
-  // 回答欄のクリア
-  var answerArea = document.getElementById("answerArea");
-  answerArea.innerHTML = "Watsonの回答";
 
-  // 質問文のセット
-  var q = document.getElementById("q").value;
-  console.log("q = " + q );
-  invokeRR(q);
-}
 
 // -------------------------------------------------------------------
 // XMLHttpRequest オブジェクトを作成する関数
