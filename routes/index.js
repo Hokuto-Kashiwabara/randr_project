@@ -4,7 +4,6 @@
 var express = require('express');
 var uuid = require('node-uuid');
 var moment = require('moment');
-var memo = require('../models/memo');
 var package = require('../package.json');
 var watson = require('watson-developer-cloud');
 var qs = require('qs');
