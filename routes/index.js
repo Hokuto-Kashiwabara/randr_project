@@ -16,9 +16,13 @@ router.get('/', function(req, res) {
  res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
 });
 
+// 検索画面の表示
+router.get('/search', function(req, res) {
+ res.render('search', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
+});
+
 // クラスター確認
 router.post('/list', function(req, res) {
-
 var params = {
   username: req.body.u,
   password: req.body.p,
@@ -43,7 +47,6 @@ retrieve_and_rank.listRankers({},
     else
       console.log(JSON.stringify(response, null, 2));
 });
-
 });
 
 // 検索ボタン
@@ -67,9 +70,8 @@ var params = {
 solrClient = retrieve_and_rank.createSolrClient(params);
 
 var ranker_id = '7ff711x34-rank-525';
-var question  = req.params.q;
-question = encodeURIComponent(question);
-var query     = qs.stringify({q: question, ranker_id: ranker_id, fl: 'id,title'}); //bodyで中身表示
+var question  = encodeURIComponent(req.params.q);
+var query     = qs.stringify({q: question, ranker_id: ranker_id, fl: 'id,title,body,ranker.confidence'}); //bodyで中身表示
 
 solrClient.get('fcselect', query, function(err, searchResponse) {
   if(err) {
@@ -79,6 +81,7 @@ solrClient.get('fcselect', query, function(err, searchResponse) {
       // console.log(JSON.stringify(searchResponse.response.docs, null, 2));
       // var response = { answer: searchResponse.response.docs[0].body,
       //       message: '回答が見つかりました。' };
+      
         return res.status(200).send(JSON.stringify(searchResponse.response.docs));
     }
 });

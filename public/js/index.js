@@ -9,14 +9,26 @@ $(function() {
 	 * クラスター確認ボタンクリック
 	 */
 	$('#clsButton').click(function() {
-var username = encodeURIComponent($('#input_username')[0].value).trim();
-var password = encodeURIComponent($('#input_password')[0].value).trim();
-var params = {
-  u:username,
-  p:password
-}
-		cluscheck(params);
+    var username = encodeURIComponent($('#input_username')[0].value).trim();
+    var password = encodeURIComponent($('#input_password')[0].value).trim();
+    var params = {
+      u:username,
+      p:password
+    }
+		  cluscheck(params);
   });
+
+	/**
+	 * リストクリック
+	 */
+	$('#tableid tbody tr').click(function() {
+  document.getElementById("footpanel").style.display="block";
+
+  var v = $(this).closest('tr')[0];
+  var table = document.getElementById("tablefoot");
+  var cell = table.rows[1];
+  cell.innerHTML = v.children[3].innerText;
+  })
 });
 
 /**
@@ -24,7 +36,6 @@ var params = {
  * @param {object}  params - auth
  */
 var cluscheck = function(params) {
-
 	$.post('/list', params).done(function(html) {
     $('panel-heading').html(html);
     console.log(html);
@@ -34,25 +45,25 @@ var cluscheck = function(params) {
 	});
 }
 
-
 // 質問ボタンクリック
 // -------------------------------------------------------------------
 var askQuestion = function() {
-  // 回答欄のクリア
-  // var answerArea = document.getElementById("answerArea");
-  // answerArea.innerHTML = "Watsonの回答";
-
+  // setTimeout(document.getElementById("answertable").style.display="block",1500)
   // 質問文のセット
   var q = document.getElementById("q").value;
-  console.log("q = " + q );
-  invokeRR(q);
+  // console.log("q = " + q );
+  // invokeRR(q);
+  window.location.href = '/search';
+
+  var xhr = new XMLHttpRequest();
+  var question = (window.location.href + "/search").getElementById("question");
+  question.innerHTML = JSON.parse(xhr.responseText);
 }
 
 // -------------------------------------------------------------------
 // RRによる応答
 // -------------------------------------------------------------------
 var invokeRR = function(question, q) {
-  console.log("これからRRを呼ぶよ");
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function (){
     switch(xhr.readyState){
@@ -61,17 +72,29 @@ var invokeRR = function(question, q) {
           console.log("XHR 通信失敗");
         }else{
           if(xhr.status == 200){
-            console.log("受信:" + xhr.responseText);
-            // var answerArea = document.getElementById("answerArea");
-            var table = document.getElementById("tableid");
-            var cell = table.rows[1];
-            cell.innerHTML = JSON.parse(xhr.responseText);
-            // invokeT2S(JSON.parse(xhr.responseText).answer);
+            var i = 0;
+            var g = 0;
+            $('#tableid tbody td').each(function(){
+                if(i == "0" || i == "3" || i == "6" || i == "9" || i == "12"){
+                    var v = JSON.parse(xhr.responseText)[g]
+                    a = 100 * v["ranker.confidence"];
+                    $(this).text(a.toFixed(2) + "%");
+                    i++;
+                } else if (i == "1" || i == "4" || i == "7" || i == "10" || i == "13"){
+                    var a = JSON.parse(xhr.responseText)[g].title;
+                    $(this).text(a);
+                    i++;
+                } else if (i == "2" || i == "5" || i == "8" || i == "11" || i == "14"){
+                    var a = JSON.parse(xhr.responseText)[g].body;
+                    $(this).text(a);
+                    i++;
+                    g++;
+                }
+            });
           }else{
             console.log("その他の応答:" + xhr.status);
-            console.log("その他の応答:" + xhr.responseText);
-            var answerArea = document.getElementById("answerArea");
-            answerArea.innerHTML = JSON.parse(xhr.responseText).message;
+            // var answerArea = document.getElementById("answerArea");
+            // answerArea.innerHTML = JSON.parse(xhr.responseText).message;
             // invokeT2S(JSON.parse(xhr.responseText).message);
           }
         }
@@ -82,32 +105,6 @@ var invokeRR = function(question, q) {
   xhr.open("GET", url, true);
   xhr.send("");
 }
-
-
-
-// -------------------------------------------------------------------
-// XMLHttpRequest オブジェクトを作成する関数
-// -------------------------------------------------------------------
-function XMLHttpRequestCreate(){
-  try{
-    return new XMLHttpRequest();
-  }catch(e){}
-  // IE6
-  try{
-    return new ActiveXObject('MSXML2.XMLHTTP.6.0');
-  }catch(e){}
-  try{
-    return new ActiveXObject('MSXML2.XMLHTTP.3.0');
-  }catch(e){}
-  try{
-    return new ActiveXObject('MSXML2.XMLHTTP');
-  }catch(e){}
-  // not supported
-  return null;
-};
-
-
-
 
 
 // // -------------------------------------------------------------------

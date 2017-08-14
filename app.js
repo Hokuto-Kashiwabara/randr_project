@@ -7,6 +7,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var routes = require('./routes');
+var search = require('./routes/search');
 
 // アプリケーションの作成
 var app = express();
@@ -24,6 +25,7 @@ app.use(methodOverride('_method'));
 
 // ルーティングの設定
 app.use('/', routes);
+app.use('/search', routes);
 
 // リクエストの受け付け
 var server = app.listen(process.env.PORT || 3000, function() {
