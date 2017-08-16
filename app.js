@@ -6,13 +6,10 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var routes = require('./routes');
-var search = require('./routes/search');
 
 // アプリケーションの作成
 var app = express();
 app.use(express.static(__dirname + '/public'));
-
 
 // ビューの設定
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +21,10 @@ app.use(bodyParser.urlencoded({ extended : true }));
 app.use(methodOverride('_method'));
 
 // ルーティングの設定
-app.use('/', routes);
-app.use('/search', routes);
+app.use('/', require('./routes/index'));
+app.use('/search', require('./routes/search'));
+app.use('/clus', require('./routes/clus'));
+
 
 // リクエストの受け付け
 var server = app.listen(process.env.PORT || 3000, function() {

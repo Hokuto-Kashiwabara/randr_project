@@ -4,13 +4,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>アンサーズ</title>
+    <title>検索結果</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/search.js"></script>
     <script type="text/javascript" src="/js/index.js"></script>
 </head>
 
-    <!-- ナビバー  -->
+<body>
+<!-- ナビバー  -->
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -27,7 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarEexample3">
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
-                        <input type="text" id="question" class="form-control" value="" disabled="disabled" style="width:160%">
+                        <input type="text" id="question" class="form-control" value="<%= decodeURIComponent(question) %>" disabled="disabled" style="width:160%">
                     </div>
                     <!-- <button type="submit" class="btn btn-default" >検索</button> -->
                 </form>
@@ -35,59 +37,80 @@
         </div>
     </nav>
 
-    <!-- リスト -->
-    <!-- style="display:none;" -->
-    <div class="table-responsive" id="answertable">
-        <table class="table table-striped table-hover" id="tableid">
-                <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td></td>
-                        <td></td>
-                        <td hidden></td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td></td>
-                        <td></td>
-                        <td hidden></td>
-                    </tr>
-                    <tr>
-                        <th>3</th>
-                        <td></td>
-                        <td></td>
-                        <td hidden></td>
-                    </tr>
-                    <tr>
-                        <th>4</th>
-                        <td></td>
-                        <td></td>
-                        <td hidden></td>
-                    </tr>
-                    <tr>
-                        <th>5</th>
-                        <td></td>
-                        <td></td>
-                        <td hidden></td>
-                    </tr>
-                </tbody>
-            </div> 
-        </table>
-
-            <div class="panel panel-success" id="footpanel" style="display:none">
-                <table class="table table-striped table-hover" id="tablefoot">
-                    <tfoot>
+    <div class="container">
+        <!-- リスト -->
+        <!-- style="display:none;" -->
+        <div class="table-responsive" id="answertable">
+            <table class="table table-striped table-hover" id="tableid">
+                    <tbody>
                         <tr>
-                            <th class="col-sm-12" style="color: #3c763d; background-color: #dff0d8;border-color: #d6e9c6;">詳細</th>
+                            <th class="col-xs-1" >1</th>
+                            <td class="col-xs-1">
+                                <% var v = params[0];
+                                a = 100 * v["ranker.confidence"]; %>
+                                <%= a.toFixed(2) + "%" %>
+                            </td>
+                            <td class="col-xs-10"><%= params[0].title %></td>
+                            <td hidden><%= params[0].body %></td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <th>2</th>
+                            <td>
+                                <% var v = params[1];
+                                a = 100 * v["ranker.confidence"]; %>
+                                <%= a.toFixed(2) + "%" %>
+                            </td>
+                            <td><%= params[1].title %></td>
+                            <td hidden><%= params[1].body %></td>
                         </tr>
-                    </tfoot>
-                </table>
-            </div>
-    </div>  
+                        <tr>
+                            <th>3</th>
+                            <td>
+                                <% var v = params[2];
+                                a = 100 * v["ranker.confidence"]; %>
+                                <%= a.toFixed(2) + "%" %>
+                            </td>
+                            <td><%= params[2].title %></td>
+                            <td hidden><%= params[2].body %></td>
+                        </tr>
+                        <tr>
+                            <th>4</th>
+                            <td>
+                                <% var v = params[3];
+                                a = 100 * v["ranker.confidence"]; %>
+                                <%= a.toFixed(2) + "%" %>
+                            </td>
+                            <td><%= params[3].title %></td>
+                            <td hidden><%= params[3].body %></td>
+                        </tr>
+                        <tr>
+                            <th>5</th>
+                            <td>
+                                <% var v = params[4];
+                                a = 100 * v["ranker.confidence"]; %>
+                                <%= a.toFixed(2) + "%" %>
+                            </td>
+                            <td><%= params[4].title %></td>
+                            <td hidden><%= params[4].body %></td>
+                        </tr>
+                    </tbody>
+                </div> 
+            </table>
 
+                <div class="panel panel-success" id="footpanel" style="display:none">
+                    <table class="table table-striped table-hover" id="tablefoot">
+                        <tfoot>
+                            <tr>
+                                <th class="col-sm-12" style="color: #3c763d; background-color: #dff0d8;border-color: #d6e9c6;">詳細</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+        </div>
+    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
