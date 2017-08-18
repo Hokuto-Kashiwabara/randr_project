@@ -43,6 +43,12 @@ router.get('/:q', function(req, res) {
           console.log('Error searching for documents: ' + err);
         }
           else {
+            
+            var i = 0;
+            searchResponse.response.docs.forEach(function() {
+              searchResponse.response.docs[i].body = nl2br(searchResponse.response.docs[i].body);
+              i++;
+            })
             res.render('search', { params: searchResponse.response.docs, question: question});
           }
       });
@@ -53,5 +59,16 @@ router.get('/:q', function(req, res) {
      var param = JSON.stringify(req.body)
     return res.render('datails', {params: param});
    });
+
+
+/**
+* 改行をBRタグに変換
+* 
+* @param {String} str 変換したい文字列
+*/
+var nl2br = function (str) {
+  return str.replace(/\n/g, '<br>');
+ };
+ 
 
 module.exports = router;
