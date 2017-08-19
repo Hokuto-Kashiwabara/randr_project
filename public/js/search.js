@@ -10,26 +10,26 @@ $(function() {
 	$('#tableid tbody tr').click(function() {
   // document.getElementById("footpanel").style.display="block";
 
-  var v = $(this).closest('tr')[0];
+  var v = $(this)
   // var table = document.getElementById("tablefoot");
   // var cell = table.rows[1];
   // cell.innerHTML = v.children[3].innerText;
-
-  var details = v.children[3].innerText;
   // window.open('/search/q/', '_blank'); 
-
-  senddatails(details);
+  senddatails(v);
   // window.location.href = '/search/q/' + ecodeURI(details) ;
-
   })
 });
 
 /**
- * 渡された文字列でクラスターを確認する。
- * @param {object}  details - auth
+ * 新規ポップアップでHTMLを表示する。
+ * @param {object}  details - data
  */
-var senddatails = function(details) {
-	$.post('/search/datail', details).done(function(html) {
+var senddatails = function(v) {
+  var testdata = v.closest('tr')[0];
+  var details = testdata.children[1].innerText;
+  var title = testdata.children[0].innerText;
+
+	$.post('/search/datail', {text:details,title:title}).done(function(html) {
     console.log(html);
     newwindow(html);
 	}).fail(function(error) {
@@ -37,6 +37,11 @@ var senddatails = function(details) {
 	});
 }
 
+/**
+* 受け取ったhtmlを新規ポップアップで表示
+* 
+* @param {object} html 新規で表示したいポップアップ
+*/
 function newwindow(html) {
   var nwin = window.open("", '_blank');
 	nwin.document.open();
