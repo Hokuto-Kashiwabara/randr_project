@@ -48,3 +48,11 @@ function newwindow(html) {
 	nwin.document.write(html);
   nwin.document.close();
 }
+
+
+// 役に立ったボタンクリック
+var UsefulBtn = function() {
+  console.log('DB登録');
+  $(usefulbtn).attr("disabled","disabled");
+  
+}

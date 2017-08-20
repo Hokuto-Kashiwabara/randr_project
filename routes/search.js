@@ -12,7 +12,7 @@ var router = express.Router();
 
 // 検索画面の表示
 router.get('/', function(req, res) {
-    res.render('search', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
+    res.render('search/search', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
    });
 
 // 検索画面の表示
@@ -47,7 +47,7 @@ router.get('/:q', function(req, res) {
         searchResponse.response.docs[i].body = nl2br(searchResponse.response.docs[i].body);
         i++;
       })
-      res.render('search', { params: searchResponse.response.docs, question: question});
+      res.render('search/search', { params: searchResponse.response.docs, question: question});
     }
   });
 });
@@ -56,7 +56,7 @@ router.get('/:q', function(req, res) {
 router.post('/datail', function(req, res) {
   var param = nl2br(req.body.text);
   var title = req.body.title;
-  return res.render('datails', {params: param,title:title});
+  return res.render('search/datails', {params: param,title:title});
 });
 
 /**
