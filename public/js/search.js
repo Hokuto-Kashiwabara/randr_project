@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * ready
  */
@@ -51,8 +50,17 @@ function newwindow(html) {
 
 
 // 役に立ったボタンクリック
-var UsefulBtn = function() {
+var UsefulBtn = function(e) {
   console.log('DB登録');
-  $(usefulbtn).attr("disabled","disabled");
+
+  var v = e;
+
+  $.post('/search/insert', {parm:v}).done(function() {
+    console.log('DB OK');
+	}).fail(function(error) {
+		console.log(error);
+  });
   
+  $(usefulbtn).attr("disabled","disabled");
+  alert('DB登録')
 }

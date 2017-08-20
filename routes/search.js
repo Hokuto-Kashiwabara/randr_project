@@ -5,7 +5,7 @@ var moment = require('moment');
 var package = require('../package.json');
 var watson = require('watson-developer-cloud');
 var qs = require('qs');
-
+var Cloudant =  require('cloudant');
 
 // ルーターの作成
 var router = express.Router();
@@ -67,6 +67,27 @@ router.post('/datail', function(req, res) {
 var nl2br = function (str) {
   return str.replace(/\n/g, '<br>');
  };
- 
+
+ // 詳細の表示
+router.post('/insert', function(req, res) {
+  //cloudant cledencial
+  var me = '1ff0c135-d4bc-4875-b989-59d5878a6c1f-bluemix'; // Set this to your own account
+  var password = '32b1e65ef3df93b92eb88a71bd1c45df32ff4fe51708aa7aadea3c3a7d9c5812';
+  var cloudant = Cloudant({account:me, password:password});
+  var db = cloudant.db.use('gt');
+
+  //gtパラメータを設定
+  var params = {
+
+  };
+
+  db.insert({ crazy: true }, 'id', function(err, body) {
+    if (!err)
+      console.log(body);
+  });
+
+  return
+});
+
 
 module.exports = router;
