@@ -57,7 +57,7 @@ router.post('/datail', function(req, res) {
   var param = nl2br(req.body.text);
   var title = req.body.title;
   var q = req.body.q;
-  return res.render('search/datails', {params: param,title:title,q:q});
+  return res.render('search/datails', {params:param, title:title, q:q} );
 });
 
 /**

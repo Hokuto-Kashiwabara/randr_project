@@ -22,7 +22,7 @@ $(function() {
 });
 
 /**
- * 新規ポップアップでHTMLを表示する。
+ * HTMLを表示する。(新規ポップアップ)
  * @param {object}  details - data
  */
 var senddatails = function(v) {
