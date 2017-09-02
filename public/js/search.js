@@ -8,8 +8,10 @@ $(function() {
 	 */
 	$('#tableid tbody tr').click(function() {
   // document.getElementById("footpanel").style.display="block";
-
-  var v = $(this)
+  var v = {
+    this:$(this),
+    doc:document
+  }
   // var table = document.getElementById("tablefoot");
   // var cell = table.rows[1];
   // cell.innerHTML = v.children[3].innerText;
@@ -24,11 +26,12 @@ $(function() {
  * @param {object}  details - data
  */
 var senddatails = function(v) {
-  var testdata = v.closest('tr')[0];
+  var testdata = v.this.closest('tr')[0];
   var details = testdata.children[1].innerText;
   var title = testdata.children[0].innerText;
+  var q = v.doc.getElementById("question").value;
 
-	$.post('/search/datail', {text:details,title:title}).done(function(html) {
+	$.post('/search/datail', {text:details,title:title,q:q}).done(function(html) {
     console.log(html);
     newwindow(html);
 	}).fail(function(error) {
@@ -52,10 +55,12 @@ function newwindow(html) {
 // 役に立ったボタンクリック
 var UsefulBtn = function(e) {
   console.log('DB登録');
+  var doc = {
+    q:document.getElementById("question").value,
+    id:document.getElementById('tablefoot').rows[0].innerText
+  };
 
-  var v = e;
-
-  $.post('/search/insert', {parm:v}).done(function() {
+  $.post('/search/insert', {doc:doc}).done(function() {
     console.log('DB OK');
 	}).fail(function(error) {
 		console.log(error);

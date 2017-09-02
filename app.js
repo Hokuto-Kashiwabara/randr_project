@@ -24,6 +24,7 @@ app.use(methodOverride('_method'));
 app.use('/', require('./routes/index'));
 app.use('/search', require('./routes/search'));
 app.use('/clus', require('./routes/clus'));
+app.use('/gt', require('./routes/gt'));
 
 
 // リクエストの受け付け

@@ -1,0 +1,23 @@
+
+{
+
+    "r_and_r" : {
+        "conf":{
+            "username": "8e15a2cb-4a85-4ee4-8894-c1ee4436c686",
+            "password": "T3Btu4vegwaA",
+            "version": "v1"
+        },
+        "cluster":{
+            "cluster_id": "scfca104ca_290c_4b61_8d07_f0082d7a9c22",
+            "collection_name": "DataSP"
+        },
+        "ranker_id":"7ff711x34-rank-525"
+    },
+
+    "cloudant":{
+        "url" : "https://1ff0c135-d4bc-4875-b989-59d5878a6c1f-bluemix.cloudant.com",
+        "username": "1ff0c135-d4bc-4875-b989-59d5878a6c1f-bluemix",
+        "password": "32b1e65ef3df93b92eb88a71bd1c45df32ff4fe51708aa7aadea3c3a7d9c5812"
+    }
+
+}

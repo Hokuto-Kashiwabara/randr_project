@@ -56,7 +56,8 @@ router.get('/:q', function(req, res) {
 router.post('/datail', function(req, res) {
   var param = nl2br(req.body.text);
   var title = req.body.title;
-  return res.render('search/datails', {params: param,title:title});
+  var q = req.body.q;
+  return res.render('search/datails', {params: param,title:title,q:q});
 });
 
 /**
@@ -78,10 +79,12 @@ router.post('/insert', function(req, res) {
 
   //gtパラメータを設定
   var params = {
-
+      id:req.body.doc.id,
+      q:req.body.doc.q,
+      rank:'4'
   };
 
-  db.insert({ crazy: true }, 'id', function(err, body) {
+  db.insert({params}, function(err, body) {
     if (!err)
       console.log(body);
   });
