@@ -35,8 +35,8 @@ router.post('/', function(req, res){
 
     db.find(query,function(err,result){
         if(err) throw err;
-        var params = {params:result.docs } 
-        res.render('gt/list', {params:params, app:view_helpers} )
+        var params = {params:result.docs };
+        res.render('gt/list', { params:params, app:view_helpers } );
     })
 
 });
@@ -57,10 +57,10 @@ router.post('/json', function(req, res) {
          result
       };
 
-      data = JSON.stringify(data, null, '    ')
+      data = JSON.stringify(data, null, '    ');
       
       fs.writeFile('gt.json', data);
-      return
+      return ;
 
    })
 });
