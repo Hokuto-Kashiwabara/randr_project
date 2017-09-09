@@ -22,7 +22,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     Ansewrs
                 </a>
             </div>
@@ -48,7 +48,7 @@
                     <% var i = 0; %>
                     <% params.forEach(function() { %>
                         <tr>
-                            <td><%- params[i].title -%></td>
+                            <td><%- params[i].id -%></td>
                             <td><div style="height: 10em;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 7;"><%- params[i].body -%></div></td>
                         </tr>
                     <% i++; %>

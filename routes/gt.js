@@ -8,7 +8,7 @@ var qs = require('qs');
 var cloudant = require('../helper/cloudant.js');
 var info = require('../info/info.json');
 var Cloudant =  require('cloudant');
-var app = require('../helper/app.js')
+var app = require('../helper/app.js');
 var fs = require('fs');
 
 var view_helpers = {
@@ -18,7 +18,7 @@ var view_helpers = {
 // ルーターの作成
 var router = express.Router();
 
-// クラスター確認画面の表示(ページ表示)
+// gt画面の表示
 router.get('/', function(req, res, next) {
  res.render('gt/gt', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
 });
@@ -27,7 +27,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res){
 
     var selector = {}
-    // var db = 'gt';
     var query = { selector : selector
     };
 
@@ -64,7 +63,6 @@ router.post('/json', function(req, res) {
       return
 
    })
-
 });
 
 
