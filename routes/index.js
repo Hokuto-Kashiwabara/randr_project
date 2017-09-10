@@ -13,7 +13,7 @@ var router = express.Router();
 
 // メイン画面の表示(ページ表示)
 router.get('/', function(req, res) {
- res.render('index', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
+ res.render('index', { });
 });
 
 module.exports = router;

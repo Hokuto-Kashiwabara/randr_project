@@ -36,7 +36,6 @@
             </div>
         </div>
     </nav>
-
     <div class="container">
         <!-- リスト -->
         <!-- style="display:none;" -->
@@ -49,6 +48,7 @@
                     <% params.forEach(function() { %>
                         <tr>
                             <td><%- params[i].id -%></td>
+                            <td style="display:none"><%- params[i].title -%></td>
                             <td><div style="height: 10em;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 7;"><%- params[i].body -%></div></td>
                         </tr>
                     <% i++; %>

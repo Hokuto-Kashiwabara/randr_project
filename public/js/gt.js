@@ -17,13 +17,13 @@ $(function() {
 });
 
 
-// R_and_R for JSONボタンクリック
+// R_and_R for OUTputボタンクリック
 // -------------------------------------------------------------------
-var rrJson = function() {
+var rr_out = function(e) {
 
-   var data; 
+   var data = { type : e.getAttribute("dataType") }; 
 
-  $.post('/gt/json', data)
+  $.post('/gt/output', data)
   .done(function(res) {
    console.log(res);
 

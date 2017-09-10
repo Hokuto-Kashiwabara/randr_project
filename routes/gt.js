@@ -20,7 +20,7 @@ var router = express.Router();
 
 // gt画面の表示
 router.get('/', function(req, res, next) {
- res.render('gt/gt', { title : 'sample Ansewrs', massage:'Welcom AnswersSite'});
+ res.render('gt/index', {});
 });
 
 // List
@@ -36,33 +36,37 @@ router.post('/', function(req, res){
     db.find(query,function(err,result){
         if(err) throw err;
         var params = {params:result.docs };
-        res.render('gt/list', { params:params, app:view_helpers } );
+        res.render('gt/list', { params: params, app: view_helpers } );
     })
 
 });
 
-// Json
-router.post('/json', function(req, res) {
-
+// ファイル出力
+router.post('/output', function(req, res) {
    var selector = {}
-   var query = { selector : selector
-   };
+   var query = { 
+      selector : selector
+      };
    var cloudant = Cloudant({account:info.cloudant.username, password:info.cloudant.password});
    var db = cloudant.db.use('gt');
 
    db.find(query,function(err,result){
-       if(err) throw err;
+      if(err) throw err;
 
-       var data = {
-         result
-      };
+      var doc = result.docs;
+      if(req.body.type == 'json'){ //jsonフォーマット
+         var data = {
+            doc
+         };
+         data = JSON.stringify(data, null, '    ');
+         fs.writeFile('public/json/gt.json', data);
+         return ;
+      } else {
+         return ;
+      }
+   });
 
-      data = JSON.stringify(data, null, '    ');
-      
-      fs.writeFile('gt.json', data);
-      return ;
 
-   })
 });
 
 
