@@ -8,6 +8,7 @@ var qs = require('qs');
 var Cloudant =  require('cloudant');
 var info = require('../info/info.json');
 var randr = require('../helper/r_and_r');
+var _ = require('underscore');
 
 var view_helpers = {
    app : require('../helper/app.js')

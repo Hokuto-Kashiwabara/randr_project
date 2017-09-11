@@ -10,6 +10,7 @@ var info = require('../info/info.json');
 var Cloudant =  require('cloudant');
 var app = require('../helper/app.js');
 var fs = require('fs');
+var _ = require('underscore');
 
 var view_helpers = {
     app : require('../helper/app.js')
@@ -59,9 +60,16 @@ router.post('/output', function(req, res) {
             doc
          };
          data = JSON.stringify(data, null, '    ');
-         fs.writeFile('public/json/gt.json', data);
+         fs.writeFile('public/files/gt.json', data);
          return ;
       } else {
+
+        var v = [];
+        for (var i=0; i<=doc.length -1; i++){
+            v = v + '"' + doc[i].params.q + '","' + doc[i].params.id + '","' + doc[i].params.rank + '" \r\n' ;        
+        }
+
+         fs.writeFile('public/files/csv.csv', v);
          return ;
       }
    });
