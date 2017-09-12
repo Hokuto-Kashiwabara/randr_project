@@ -25,7 +25,7 @@ app.use('/', require('./routes/index'));
 app.use('/search', require('./routes/search'));
 app.use('/clus', require('./routes/clus'));
 app.use('/gt', require('./routes/gt'));
-
+app.use('/contents', require('./routes/contents'));
 
 // リクエストの受け付け
 var server = app.listen(process.env.PORT || 3000, function() {

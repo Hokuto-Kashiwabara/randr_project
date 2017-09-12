@@ -1,5 +1,3 @@
-// answers - routes\index.js
-
 // 使用モジュールの読み込み
 var express = require('express');
 var uuid = require('node-uuid');
