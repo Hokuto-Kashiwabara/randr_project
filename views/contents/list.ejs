@@ -9,11 +9,11 @@
     <tbody>
         <!-- リスト -->
         <% var i = 0; %>
-        <% params.params.forEach(function() { %>
+        <% docs.forEach( function(doc) { %>
             <tr>
-                <td><%- app.app.nvl(params.params[i].params.id) -%></td>
-                <td><%- app.app.nvl(params.params[i].params.title) -%></td>
-                <input type="hidden" id="id" value="<%- params.params[i].params.body %>">
+                <td><%- doc.id -%></td>
+                <td><%- doc.title -%></td>
+                <input type="hidden" id="id" value="<%- doc.body %>">
             </tr>
         <% i++; %>
         <% }) %>

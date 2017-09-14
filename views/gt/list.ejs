@@ -2,8 +2,7 @@
     <thead>
         <tr>
             <th class="col-sm-2">id</th>
-            <th class="col-sm-2">q</th>
-            <th class="col-sm-7"></th>
+            <th class="col-sm-9">q</th>
             <th class="col-sm-1">rank</th>
         </tr>
     </thead>
@@ -11,12 +10,11 @@
     <tbody>
         <!-- リスト -->
         <% var i = 0; %>
-        <% params.params.forEach(function() { %>
+        <% docs.forEach(function(doc) { %>
             <tr>
-                <td><%- app.app.nvl(params.params[i].params.id) -%></td>
-                <td><%- app.app.nvl(params.params[i].params.q) -%></td>
-                <td></td>
-                <td><%- app.app.nvl(params.params[i].params.rank) -%></td>
+                <td><%- doc.id -%></td>
+                <td><%- doc.q -%></td>
+                <td><%- doc.rank -%></td>
             </tr>
         <% i++; %>
         <% }) %>

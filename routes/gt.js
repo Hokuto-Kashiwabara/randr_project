@@ -36,8 +36,7 @@ router.post('/', function(req, res){
 
     db.find(query,function(err,result){
         if(err) throw err;
-        var params = {params:result.docs };
-        res.render('gt/list', { params: params, app: view_helpers } );
+        res.render('gt/list', { docs: result.docs, view_helpers } );
     })
 
 });
