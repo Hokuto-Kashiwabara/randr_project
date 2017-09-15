@@ -1,21 +1,26 @@
-<table>
-    <thead>
-        <tr>
-            <th class="col-sm-2">id</th>
-            <th class="col-sm-10">title</th>
-        </tr>
-    </thead>
+<thead>
+    <tr>
+        <th class="col-sm-1">id</th>
+        <th class="col-sm-11">title</th>
+    </tr>
+</thead>
 
-    <tbody>
-        <!-- リスト -->
-        <% var i = 0; %>
+<tbody>
+    <!-- リスト -->
+    <% var i = 0; %>
         <% docs.forEach( function(doc) { %>
-            <tr>
-                <td><%- doc.id -%></td>
-                <td><%- doc.title -%></td>
-                <input type="hidden" id="id" value="<%- doc.body %>">
+            <tr onclick=f_click(this)>
+                <td>
+                    <%- doc.id -%>
+                </td>
+                <td>
+                    <div style="height: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
+                        <%- doc.title -%>
+                    </div>
+                </td>
+                <input type="hidden" id="body" value="<%- doc.body %>">
+                <input type="hidden" id="id" value="<%- doc.id %>">
             </tr>
-        <% i++; %>
+            <% i++; %>
         <% }) %>
-    </tbody>
-</table>
+</tbody>

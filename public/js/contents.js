@@ -14,6 +14,14 @@ $(function() {
 		  console.log(error);
     });
 
+	/**
+	 * リストクリック 効かない
+	 */
+	$('#result tbody tr').click(function() {
+    var id = document.getElementById("id").value;
+    window.location.href = '/' + id ;
+    })
+
 });
 
 
@@ -31,4 +39,9 @@ var rr_out = function(e) {
     console.log(error);
   });
 
+}
+
+var f_click = function(){
+  var id = document.getElementById("id").value;
+  window.location.href = window.location.href + '/' + id ;
 }

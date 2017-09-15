@@ -68,14 +68,12 @@ router.post('/output', function(req, res) {
             v = v + '"' + doc[i].params.q + '","' + doc[i].params.id + '","' + doc[i].params.rank + '" \r\n' ;        
         }
 
-         fs.writeFile('public/files/csv.csv', v);
-         return ;
+        fs.writeFile('public/files/csv.csv', v);
+        return ;
       }
    });
 
-
 });
-
 
 // cloudant.get(db,query,function(err, body) {
 //   if (!err)
