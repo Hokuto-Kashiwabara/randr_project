@@ -42,9 +42,16 @@ var rr_out = function(e) {
 }
 
 /**
- * 新規登録ボタン・リストクリック
+ * リストクリック
  */
 var f_click = function(e){
   var id = e.cells[3].innerText;
   window.location.href = window.location.href + '/' + id ;
+}
+
+/**
+ * 新規登録ボタン
+ */
+var entry = function(e){
+  window.location.href = window.location.href + '/' + 'entry' ;
 }

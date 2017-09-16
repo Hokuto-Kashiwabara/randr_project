@@ -45,16 +45,20 @@ router.post('/', function(req, res){
 // modal
 router.get('/:id', function(req, res) {
 
-    var selector = { "id": req.params.id }
-    var query = { selector : selector
-    };
-    var cloudant = Cloudant({account:info.cloudant.username, password:info.cloudant.password});
-    var db = cloudant.db.use('contents');
+    if(req.params.id != 'entry'){
+        var selector = { "id": req.params.id }
+        var query = { selector : selector
+        };
+        var cloudant = Cloudant({account:info.cloudant.username, password:info.cloudant.password});
+        var db = cloudant.db.use('contents');
 
-    db.find(query,function(err,result){
-        if(err) throw err;
-        res.render('app/list_modal', { doc: result.docs[0], view_helpers } );
-    })
+        db.find(query,function(err,result){
+            if(err) throw err;
+            res.render('app/list_modal', { doc:result.docs[0] , view_helpers } );
+        })
+    } else {
+        res.render('app/list_modal', { doc:'entry' , view_helpers } );
+    }
 });
 
 module.exports = router;
