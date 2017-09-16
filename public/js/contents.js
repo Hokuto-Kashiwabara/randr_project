@@ -41,7 +41,10 @@ var rr_out = function(e) {
 
 }
 
-var f_click = function(){
-  var id = document.getElementById("id").value;
+/**
+ * 新規登録ボタン・リストクリック
+ */
+var f_click = function(e){
+  var id = e.cells[3].innerText;
   window.location.href = window.location.href + '/' + id ;
 }

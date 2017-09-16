@@ -18,8 +18,8 @@
                         <%- doc.title -%>
                     </div>
                 </td>
-                <input type="hidden" id="body" value="<%- doc.body %>">
-                <input type="hidden" id="id" value="<%- doc.id %>">
+                <td hidden id="body"><%- doc.body %></td>
+                <td hidden id="id"><%- doc.id %></td>
             </tr>
             <% i++; %>
         <% }) %>
