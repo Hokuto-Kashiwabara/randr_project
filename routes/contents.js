@@ -61,4 +61,9 @@ router.get('/:id', function(req, res) {
     }
 });
 
+// (2)新規メモの作成(ダイアログ表示)
+    router.get('/memos', function(req, res) {
+    res.render('dialog', { id : null, doc : null });
+   });
+
 module.exports = router;
