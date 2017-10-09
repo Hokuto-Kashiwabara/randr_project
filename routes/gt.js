@@ -65,7 +65,7 @@ router.post('/output', function(req, res) {
 
         var v = [];
         for (var i=0; i<=doc.length -1; i++){
-            v = v + '"' + doc[i].params.q + '","' + doc[i].params.id + '","' + doc[i].params.rank + '" \r\n' ;        
+            v = v + '"' + doc[i].params.q + '","' + doc[i].params.id + '","' + doc[i].params.rank + '" \r\n' ;
         }
 
         fs.writeFile('public/files/csv.csv', v);

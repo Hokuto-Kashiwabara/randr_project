@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+   <!-- Optional theme -->
+
+	<link rel="stylesheet" href="/stylesheets/sub.css">
+	<link rel="stylesheet" href="/stylesheets/corpus.css">
+</head>
+
+<body>
+   
+   <div class="container-fluid">
+      
+      <h4>
+         <span class="glyphicon glyphicon-transfer" aria-hidden="true"></span>
+			Cloudant　Lucene検索
+		</h4>
+		
+		<hr>
+      
+		<form id="search-form" class="form-inlin row no-gutter">
+         <!-- 種別 -->
+			<div class="form-inline pull-left" id="select">
+            <label for="call_date">種別</label>
+				<select id="condition-corpus" name="corpus" class="form-control">
+               <option value="all">すべて</option>
+				</select>
+			</div>
+			<!-- 検索 -->
+			<div class="form-group input-group pull-left" id="serch">
+            <input id="qwords" type="text" class="form-control" name="qwords"  placeholder="質問を入力してください...">
+				<span class="input-group-btn ">
+               <button id="q_send" class="btn btn-default">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
+				</span>
+			</div>
+		</form>
+      
+		<!-- リスト -->
+		<div id="serchlist-row" class="row narrow">
+         <div class="col-md-12 no-gutter">
+            <div id="result-panel" class="col-md-12 no-gutter">
+            </div>
+         </div>
+		</div>
+		<!-- リスト -->
+      
+	</div>
+   
+	<script type="text/javascript" src="/js/sub.js"></script>
+   <!-- Javascript ? -->
+   <% include ../app/scripts %>
+</body>
+
+</html>

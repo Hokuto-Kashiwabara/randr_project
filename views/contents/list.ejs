@@ -9,7 +9,7 @@
     <!-- リスト -->
     <% var i = 0; %>
         <% docs.forEach( function(doc) { %>
-            <tr onclick=f_click(this)>
+            <tr>
                 <td>
                     <%- doc.id -%>
                 </td>
@@ -20,6 +20,8 @@
                 </td>
                 <td hidden id="body"><%- doc.body %></td>
                 <td hidden id="id"><%- doc.id %></td>
+                <input type="hidden" name="_id" value="<%= doc._id %>">
+                <input type="hidden" name="_rev" value="<%= doc._rev %>">
             </tr>
             <% i++; %>
         <% }) %>

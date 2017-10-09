@@ -3,22 +3,22 @@
     "r_and_r" : {
         "conf":{
             "url": "https://gateway.watsonplatform.net/retrieve-and-rank/api",
-            "username": "8f0661e7-431f-480e-af27-3b1d01a2d2d1",
-            "password": "Db30mcUKaBEp",
+            "username": "de337f1f-e60a-45da-a993-564d404d3840",
+            "password": "8OOHI8naaVTD",
             "version": "v1"
         },
         "cluster":{
-            "cluster_id": "sce6cb9e72_4e5d_4d1f_be8c_a105278a7891",
+            "cluster_id": "scc767f051_9629_4c06_a2e0_2851fee24e91",
             "collection_name": "datasp"
         },
-        "ranker_id":"7ff711x34-rank-2131"
+        "ranker_id":"7ff701x33-rank-6994"
       },
 
     "cloudant":{
-        "username": "0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix",
-        "password": "59b27a3d8f5e11e0bb3c580fab3b886bf6ee29fdba1fa3f6444af2bba06bf12b",
-        "host": "0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix.cloudant.com",
-        "port": 443,
-        "url": "https://0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix:59b27a3d8f5e11e0bb3c580fab3b886bf6ee29fdba1fa3f6444af2bba06bf12b@0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix.cloudant.com"
+      "username": "232c3ea8-d174-4ef9-8db2-8f8d98e8edb3-bluemix",
+      "password": "8555ec8704aa9947cb8f833712b79c82b7680dfe478fbe65d17f3e4b7a21426b",
+      "host": "232c3ea8-d174-4ef9-8db2-8f8d98e8edb3-bluemix.cloudant.com",
+      "port": 443,
+      "url": "https://232c3ea8-d174-4ef9-8db2-8f8d98e8edb3-bluemix:8555ec8704aa9947cb8f833712b79c82b7680dfe478fbe65d17f3e4b7a21426b@232c3ea8-d174-4ef9-8db2-8f8d98e8edb3-bluemix.cloudant.com"
       }
 }

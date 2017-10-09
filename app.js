@@ -20,12 +20,26 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended : true }));
 app.use(methodOverride('_method'));
 
+// jsons/のJSONファイルをクライアントサイドへ返します。
+app.get('/jsons/:json', function(req, res, next) {
+   res.json(require(`./jsons/${req.params.json}`));
+ });
+
 // ルーティングの設定
 app.use('/', require('./routes/index'));
 app.use('/search', require('./routes/search'));
 app.use('/clus', require('./routes/clus'));
 app.use('/gt', require('./routes/gt'));
 app.use('/contents', require('./routes/contents'));
+app.use('/menu', require('./routes/menu'));
+app.use('/sub', require('./routes/sub'));
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+   var err = new Error('Not Found');
+   err.status = 404;
+   next(err);
+ });
 
 // リクエストの受け付け
 var server = app.listen(process.env.PORT || 3000, function() {

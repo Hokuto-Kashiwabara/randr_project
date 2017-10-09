@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>コンテンツ</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+    <% include ../app/scripts %>
     <script type="text/javascript" src="/js/index.js"></script>
     <script type="text/javascript" src="/js/contents.js"></script>
 </head>
@@ -16,7 +16,7 @@
     <div class="container">
         <h1 class="text-left">contents</h1>
         <input class="btn btn-success btn-sm" type="button" dataType= "json" value="R_and_R for JSON" id="rrjson" onClick="rr_out(this)">
-        <input class="btn btn-primary btn-sm" style="margin-right: 5px;" type="button" dataType= "csv" value="gt_csv" id="rrcsv" onClick="rr_out(this)">
+        <input class="btn btn-primary btn-sm" style="margin-right: 5px;" type="button" dataType= "csv" value="csvダウンロード" id="rrcsv" onClick="rr_out(this)">
         <input class="btn btn-defalt btn-sm" style="float:right;" type="button" value="新規登録" onClick="entry()" data-toggle="modal" data-target="#list_modal">
         <a href="/contents/memos" data-remote="/contents/memos" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
         data-keyboard="false">新規作成</a>
@@ -27,8 +27,11 @@
 
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<!-- contents-modal -->
+	<div id="contents-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+   </div>
+   <!-- contents-modal -->
+
 </body>
 
 </html>
