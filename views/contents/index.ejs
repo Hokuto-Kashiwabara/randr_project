@@ -2,28 +2,31 @@
 <html lang="ja">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>コンテンツ</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>コンテンツ</title>
 
-    <% include ../app/scripts %>
-    <script type="text/javascript" src="/js/index.js"></script>
-    <script type="text/javascript" src="/js/contents.js"></script>
+   <% include ../app/scripts %>
+   <script type="text/javascript" src="/js/index.js"></script>
+   <script type="text/javascript" src="/js/contents.js"></script>
 </head>
 
 <table style="margin-top: 25x;"></table>
 <body>
     <div class="container">
-        <h1 class="text-left">contents</h1>
-        <input class="btn btn-success btn-sm" type="button" dataType= "json" value="R_and_R for JSON" id="rrjson" onClick="rr_out(this)">
-        <input class="btn btn-primary btn-sm" style="margin-right: 5px;" type="button" dataType= "csv" value="csvダウンロード" id="rrcsv" onClick="rr_out(this)">
-        <input class="btn btn-defalt btn-sm" style="float:right;" type="button" value="新規登録" onClick="entry()" data-toggle="modal" data-target="#list_modal">
-        <a href="/contents/memos" data-remote="/contents/memos" class="btn btn-primary" data-toggle="modal" data-target="#dialog" data-backdrop="static"
-        data-keyboard="false">新規作成</a>
-        <table style="margin-top: 10px;"></table>
+      <h1 class="text-left">Contents</h1>
+      <input class="btn btn-success btn-sm" type="button" dataType= "json" value="R_and_R for JSON" id="rrjson" onClick="rr_out(this)">
+      <input class="btn btn-primary btn-sm hidden" style="margin-right: 5px;" type="button" dataType= "csv" value="csvダウンロード" id="rrcsv" onClick="rr_out(this)">
 
-        <table class="table table-striped table-hover" id="result">
-        </table>
+      <!-- 新規登録ボタン -->
+      <button id="add" class="btn btn-primary form-inline pull-right">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新規登録
+      </button>
+
+      <table style="margin-top: 10px;"></table>
+
+      <table class="table table-striped table-hover" id="result">
+      </table>
 
     </div>
 

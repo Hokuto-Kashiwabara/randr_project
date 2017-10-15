@@ -6,23 +6,21 @@
 </thead>
 
 <tbody>
-    <!-- リスト -->
-    <% var i = 0; %>
-        <% docs.forEach( function(doc) { %>
-            <tr>
-                <td>
-                    <%- doc.id -%>
-                </td>
-                <td>
-                    <div style="height: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
-                        <%- doc.title -%>
-                    </div>
-                </td>
-                <td hidden id="body"><%- doc.body %></td>
-                <td hidden id="id"><%- doc.id %></td>
-                <input type="hidden" name="_id" value="<%= doc._id %>">
-                <input type="hidden" name="_rev" value="<%= doc._rev %>">
-            </tr>
-            <% i++; %>
-        <% }) %>
+   <!-- リスト -->
+   <% docs.forEach( function(doc) { %>
+      <tr>
+         <td>
+            <%- doc.id -%>
+         </td>
+         <td>
+            <div style="height: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
+            <%- doc.title -%>
+            </div>
+         </td>
+         <td hidden id="body"><%- doc.body %></td>
+         <td hidden id="id"><%- doc.id %></td>
+         <input type="hidden" name="_id" value="<%= doc._id %>">
+         <input type="hidden" name="_rev" value="<%= doc._rev %>">
+      </tr>
+   <% }) %>
 </tbody>

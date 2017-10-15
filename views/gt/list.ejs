@@ -1,22 +1,20 @@
 <table>
     <thead>
-        <tr>
-            <th class="col-sm-2">id</th>
-            <th class="col-sm-9">q</th>
-            <th class="col-sm-1">rank</th>
-        </tr>
+      <tr>
+         <th class="col-sm-3">q</th>
+         <th class="col-sm-8">id</th>
+         <th class="col-sm-1">rank</th>
+      </tr>
     </thead>
 
     <tbody>
-        <!-- リスト -->
-        <% var i = 0; %>
-        <% docs.forEach(function(doc) { %>
-            <tr>
-                <td><%- doc.id -%></td>
-                <td><%- doc.q -%></td>
-                <td><%- doc.rank -%></td>
-            </tr>
-        <% i++; %>
-        <% }) %>
-    </tbody>
+      <!-- リスト -->
+      <% docs.forEach(function(doc) { %>
+         <tr>
+            <td><%- doc.q -%></td>
+            <td><%- doc.id -%></td>
+            <td><%- doc.rank -%></td>
+         </tr>
+      <% }); %>
+   </tbody>
 </table>
