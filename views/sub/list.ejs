@@ -15,9 +15,9 @@
                   <% var i = 0; %>
                   <% params.docs.forEach(function(doc) { %>
                      <tr>
-                           <td><%- doc.id -%></td>
-                           <td style="display:none"><%- doc.title -%></td>
-                           <td><div style="height: 10em;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 7;"><%- doc.body -%></div></td>
+                        <td><%- doc.id -%></td>
+                        <td><div style="height: 10em;overflow: hidden;white-space: nowrap; text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 7;"><%- doc.body -%></div></td>
+                        <td style="display:none"><%- doc.title -%></td>
                      </tr>
                   <% i++; %>
                   <% }) %>
@@ -26,4 +26,3 @@
    </div>
 
 </div>
-   
