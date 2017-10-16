@@ -1,0 +1,26 @@
+<thead>
+    <tr>
+        <th class="col-sm-1">id</th>
+        <th class="col-sm-11">question</th>
+    </tr>
+</thead>
+
+<tbody>
+   <!-- リスト -->
+   <% docs.forEach( function(doc) { %>
+      <tr>
+         <td>
+            <%- doc.id -%>
+         </td>
+         <td>
+            <div style="height: 20px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
+            <%- doc.question -%>
+            </div>
+         </td>
+         <td hidden id="body"><%- doc.body %></td>
+         <td hidden id="id"><%- doc.id %></td>
+         <input type="hidden" name="_id" value="<%= doc._id %>">
+         <input type="hidden" name="_rev" value="<%= doc._rev %>">
+      </tr>
+   <% }) %>
+</tbody>

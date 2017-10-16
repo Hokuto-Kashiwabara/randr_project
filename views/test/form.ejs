@@ -1,0 +1,62 @@
+<div class="modal-dialog modal-full" role="document">
+   <div class="modal-content" style="width:1000px; margin-left: -170px;">
+      <div class="modal-header" style="padding-bottom: 30px;">
+         <h4 class="modal-title col-sm-4" id="gridSystemModalLabel">
+            <span class="glyphicon glyphicon-file" aria-hidden="true"　style="float:left"></span>コンテンツ
+         </h4>
+         <span class="key-info pull-right">
+         </span>
+      </div>
+
+      <div class="modal-body">
+         <form id="contents-form" class="form-horizontal" enctype="multipart/form-data">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">id</label>
+              <div class="col-sm-1">
+                  <% if (params.mode == 'new') { %>
+                    <input id="id" type="text" class="form-control" name="id">
+                  <% } else { %>
+                    <p class="form-control-static">
+                      <%= params.doc.id %>
+                    </p>
+                    <input type="hidden" name="id" value="<%= params.doc.id %>">
+                  <% } %>
+               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">タイトル</label>
+              <div class="col-sm-6">
+                  <input id="title" type="text" class="form-control ime-active" name="title" value="<%= params.app.nvl(params.doc.title) %>">
+              </div>
+            </div>
+
+            <div class="form-group">
+               <label class="col-sm-2 control-label">説明文</label>
+               <div class="col-sm-10">
+                  <textarea id="answer" class="form-control ime-active" name="answer" style="height: 250px;" rows="8"><%= params.app.nvl(params.doc.body) %></textarea>
+               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">
+                    <span class="contents-question">質問例</span>
+              </label>
+              <div class="col-sm-10 contents-question ">
+                  <textarea id="question" class="form-control ime-active" name="question" style="height: 50px;" rows="8"><%= params.app.nvl(params.doc.question) %></textarea>
+              </div>
+            </div>
+         </form>
+      </div>
+
+        <div class="modal-footer form-inline">
+          <button id="<%= params.mode == 'new' ? 'create' : 'update' %>-contents" type="button" class="btn btn-primary">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>登録/更新(仮)
+          </button>
+          <button id="cancel-test" type="button" class="btn btn-link" data-dismiss="modal">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>キャンセル
+          </button>
+        </div>
+   </div>
+   <script type="text/javascript" src="/js/test.js"></script>
+</div>

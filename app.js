@@ -31,6 +31,7 @@ app.use('/search', require('./routes/search'));
 app.use('/clus', require('./routes/clus'));
 app.use('/gt', require('./routes/gt'));
 app.use('/contents', require('./routes/contents'));
+app.use('/test', require('./routes/test'));
 app.use('/menu', require('./routes/menu'));
 app.use('/sub', require('./routes/sub'));
 

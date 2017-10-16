@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>test</title>
+
+   <% include ../app/scripts %>
+   <script type="text/javascript" src="/js/index.js"></script>
+   <script type="text/javascript" src="/js/test.js"></script>
+</head>
+
+<table style="margin-top: 25x;"></table>
+<body>
+    <div class="container">
+      <h1 class="text-left">test</h1>
+      <input class="btn btn-success btn-sm" type="button" dataType= "json" value="R_and_R for JSON" id="rrjson" onClick="rr_out(this)">
+      <input class="btn btn-primary btn-sm hidden" style="margin-right: 5px;" type="button" dataType= "csv" value="csvダウンロード" id="rrcsv" onClick="rr_out(this)">
+
+      <!-- 新規登録ボタン -->
+      <button id="add" class="btn btn-primary form-inline pull-right">
+         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新規登録
+      </button>
+
+      <table style="margin-top: 10px;"></table>
+
+      <table class="table table-striped table-hover" id="result">
+      </table>
+
+    </div>
+
+	<!-- contents-modal -->
+	<div id="contents-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" data-backdrop="static">
+   </div>
+   <!-- contents-modal -->
+
+</body>
+
+</html>

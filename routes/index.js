@@ -15,8 +15,5 @@ var router = express.Router();
 router.get('/', function(req, res) {
  res.render('index', { });
 });
-// (2)新規メモの作成(ダイアログ表示)
-router.get('/memos', function(req, res) {
-    res.render('dialog', { id : null, doc : null });
-   });
+
 module.exports = router;
