@@ -1,0 +1,9 @@
+--curlコマンド
+curl -X POST -H "Content-Type: application/json" -u "8f0661e7-431f-480e-af27-3b1d01a2d2d1":"Db30mcUKaBEp" "https://gateway.watsonplatform.net/retrieve-and-rank/api/v1/solr_clusters/sce6cb9e72_4e5d_4d1f_be8c_a105278a7891/solr/datasp/update" --data-binary @"C:\watson\randr\txtFileName.Text"
+
+--パイソントレーニング
+python ./train_win7.py -u "8f0661e7-431f-480e-af27-3b1d01a2d2d1":"Db30mcUKaBEp" -i train.csv -c sce6cb9e72_4e5d_4d1f_be8c_a105278a7891 -x datasp -n "answer_spider01"
+
+--cloudant　バルク
+curl -X POST -H "Content-Type: application/json" https://0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix:59b27a3d8f5e11e0bb3c580fab3b886bf6ee29fdba1fa3f6444af2bba06bf12b@0f0b9a42-e80d-4ac3-8f78-cd5760064685-bluemix.cloudant.com/gt/_bulk_docs -d @"C:\watson\randr\gt_db.json"
+
